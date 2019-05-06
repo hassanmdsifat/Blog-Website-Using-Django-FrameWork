@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'first_app/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block title_block %}
+    <title>Document</title>
+    {% endblock %}
+</head>
+<body>
+    {%block body_block%}
+    <div class="card" style="padding:10px">
+        <h1 class="card-title"  style="font-size: 40px">{{Post_data.Title}}</h1>
+        <h4 class="display-4" style="font-size: 20px">Catagory: {{Post_data.Catagory}}</h4>
+        <hr>
+        <div class="card-body">
+        <p style="margin-top:50px" class="card-text">
+        {% autoescape off %}
+            {{Post_data.Body}}
+        {% endautoescape %}
+        </p>
+         </div>
+    </div>
+
+    <div class="jumbotron" style="margin-top:10px">
+        <h3 class="display-3" style="font-size:20px">Comments</h3>
+        <form action="{% url 'first_app:get_comments' %}?id={{Post_data.PostId}}" method="POST" onsubmit="my_function()">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email address</label>
+                <input type="email" class="form-control" placeholder="name@example.com" name="email" id="email">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Your Comments</label>
+                <textarea class="form-control" rows="3" name="message" id="textcomments"></textarea>
+            </div>
+              <input type="hidden" name="next" value="{{request.path}}">
+              <input type="submit" value="Submit" name="submit" class="btn btn-primary">
+        </form>
+        <div class="jumbotron jumbotron-fluid">
+            {% if all_comments %}
+                {% for com in all_comments %}
+                    <p><b>{{com.Email}}</b><br>
+                        <span style="margin-left:10px">{{com.Message}}</span></p>
+                {% endfor %}
+            {% else %}
+                <p style="color:red">*No Commnets Available</p>
+            {% endif %}
+        </div>
+    </div>
+    <script src="../../static/javascript/script.js"></script>
+    {% endblock %}
+    
+</body>
+</html>

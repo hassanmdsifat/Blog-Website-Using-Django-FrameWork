@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'first_app/base.html' %}
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block title_block %}
+    <title>About Me</title>
+    {% endblock %}
+</head>
+<body>
+    {% block body_block %}
+        <div class="jumbotron">
+            <p>
+                Actually This Website is made for practicing Python And Django
+            </p>
+            <h3>Developer Name: Md.Sifat Hassan</h3>
+            <h3>University: American International University Bangladesh</h3>
+            <div class="text-center">
+            <figure class="figure">
+                    <img src="{% static 'images/my_pic3.jpg' %}" class="figure-img img-fluid rounded" alt="My Picture" width="450px" height="400px">
+                    <figcaption class="figure-caption"><b>Here is the developer enjoying his vacation</</figcaption>
+            </figure>
+            <br>
+            <a href="https://www.linkedin.com/in/sifat-hassan-020004153/"><img src="{% static 'images/linkedin.png' %} " alt="Linkedin Profile" height="50px" weidth="60pc"></a>
+            </div>
+        </div>
+    {% endblock %}
+    
+</body>
+</html>

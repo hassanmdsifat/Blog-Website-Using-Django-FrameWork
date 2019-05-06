@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'first_app/base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block title_block %}
+    <title>Catagory</title>
+    {% endblock %}
+</head>
+<body>
+    <div class="container" align="center">
+        {% block body_block %}
+            <h1>{{current_catagory}}</h1>
+            <div class="container">
+            {% if data %}
+                {% for Data in data %}
+                <div class="jumbotron" style="font-size: 16px" >
+                    <h3 class="display-4" style="font-size: 26px"><b>{{Data.Title}}</b></h3>
+                    <a href="{% url 'first_app:details'%}?id={{Data.PostId}}">See More</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No POSTS YET</p>
+            {% endif %}
+            </div>
+
+        {% endblock %}
+    </div>
+    
+</body>
+</html>
